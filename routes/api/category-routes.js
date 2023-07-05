@@ -8,7 +8,9 @@ router.get('/', async (req, res) => {
   //// DONE be sure to include its associated Products
   try{
     const catData = await Category.findAll({
-      include: [{model: Product}]
+      include:[
+        {model: Product}
+      ]
     });
     res.status(200).json(catData);
   }catch(err){
@@ -22,9 +24,9 @@ router.get('/:id', async (req, res) => {
   try{
     const catData = await Category.findByPk(
       req.params.id, {
-        include: {
-          model: Product
-        }
+        include: [
+          { model: Product }
+        ]
       }
     );
     // TODO: gracefully handle NULL id
@@ -34,12 +36,16 @@ router.get('/:id', async (req, res) => {
   }
 });
 
-router.post('/', (req, res) => {
-  // TODO create a new category
-  const newCat  = req.body;
-  console.log({newCat})
-  // TAKE REQ BODY
-  // SQL CREATE (REQ BODY)
+router.post('/', async (req, res) => {
+  //// DONE create a new category
+  try{
+    const newCat = await Category.create({
+      category_name: req.body.category_name
+    })
+    res.status(200).json(newCat)
+  } catch(err){
+    res.status(500).json(err);
+  }
 });
 
 router.put('/:id', (req, res) => {
