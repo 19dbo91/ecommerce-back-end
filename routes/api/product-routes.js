@@ -33,7 +33,6 @@ router.get('/:id', async (req, res) => {
         ]
       }
     );
-    // TODO: gracefully handle NULL id
     res.status(200).json(productData);
   }catch(err){
     res.status(500).json(err);
@@ -118,7 +117,7 @@ router.put('/:id', (req, res) => {
 });
 
 router.delete('/:id', (req, res) => {
-  // delete one product by its `id` value
+  // TODO delete one product by its `id` value
 });
 
 module.exports = router;

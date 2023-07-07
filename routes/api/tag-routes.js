@@ -36,15 +36,15 @@ router.get('/:id', async (req, res) => {
 });
 
 router.post('/', (req, res) => {
-  // create a new tag
+  // TODO create a new tag
 });
 
 router.put('/:id', (req, res) => {
-  // update a tag's name by its `id` value
+  // TODO update a tag's name by its `id` value
 });
 
 router.delete('/:id', (req, res) => {
-  // delete on tag by its `id` value
+  // TODO delete on tag by its `id` value
 });
 
 module.exports = router;
