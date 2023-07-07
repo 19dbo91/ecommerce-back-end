@@ -34,38 +34,44 @@ router.get('/:id', async (req, res) => {
   }
 });
 
+//! NOTE: categoryName can be duplicated; not in acceptance criteria
+// insert check here if needed later
+
 router.post('/', async (req, res) => {
   //// DONE create a new category
-  try{ // NOTE: category can be duplicated; insert check here if needed later
-    const newCategoryData = await Category.create({
-      category_name: req.body.category_name
-    });
-    res.status(200).json(newCategoryData);
-  } catch(err){
-    res.status(500).json(err);
+  if(req.body.category_name.trim() != ""){
+    try{ 
+      const newCategoryData = await Category.create({
+        category_name: req.body.category_name
+      });
+      res.status(200).json(newCategoryData);
+    } catch(err){
+      res.status(500).json(err);
+    }
+  }
+  else{ //added to prevent nonsense empty string category
+    res.status(400).json("ERROR 400: Bad Request - null string");
   }
 });
 
 router.put('/:id', async (req, res) => {
   //// DONE update a category by its `id` value
-  const {category_name} = req.body;
-    if(category_name != ""){
+  if(req.body.category_name.trim() != ""){
     try{
-      const updatedCategoryData = await Category.update({category_name}, {
+      const updatedCategoryData = await Category.update(req.body, {
         where: {id: req.params.id}
       });
-      console.log(updatedCategoryData);
-
-      //if(updatedCategoryData[0]===0){res.status(200).json(`${updatedCategoryData} changes were made; Name is already set to ${category_name}`)}
-      //else{ //Commented out code outside of spec; preserving for future reference
+      //Commented out code outside of spec; preserving for future reference
+      //if(updatedCategoryData[0]===0){
+        //res.status(200).json(`${updatedCategoryData} changes were made; Name is already set to ${category_name}`)}
+      //else{
         res.status(200).json(updatedCategoryData);
       //}
-
     } catch(err){
       res.status(500).json(err);
     }
   }
-  else{
+  else{ //added to prevent nonsense empty string category; see delete
     res.status(400).json("ERROR 400: Bad Request - null string");
   }
 });
