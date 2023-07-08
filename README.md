@@ -23,6 +23,8 @@ Clone repo from <https://github.com/19dbo91/ecommerce-back-end> to your desired 
 
 ## Usage
 
+You can refer to the video at Google Drive: <https://drive.google.com/file/d/1yWTRHPnPmPC3ZvIBJxyhBOia3JhRj5O0/view?usp=sharing>
+
 - Open folder containing freshly downloaded repo
 - Open in your IDE
 - Rename ``.env.EXAMPLE`` to ``.env``
@@ -55,7 +57,7 @@ npm start
 - Open Insomnia (or your preferred HTTP/API client)
 - Open up to base path ``localhost:/3001``
 - Add routes to however you want to view/change
-
+/
 ## License
 
 [MIT License](https://choosealicense.com/licenses/mit/)
